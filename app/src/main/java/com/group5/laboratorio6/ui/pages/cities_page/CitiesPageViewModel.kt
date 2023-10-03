@@ -1,6 +1,5 @@
 package com.group5.laboratorio6.ui.pages.cities_page
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,10 +20,8 @@ class CitiesViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = apiService.getCities()
-                Log.d("Http", response.toString())
                 cities.addAll(response.links.cities)
             } catch (e: Exception) {
-                Log.d("Http", e.toString())
             }
         }
     }
