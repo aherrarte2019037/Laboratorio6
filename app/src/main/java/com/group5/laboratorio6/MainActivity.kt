@@ -6,15 +6,18 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import com.group5.laboratorio6.ui.pages.cities_page.CitiesPage
+import com.group5.laboratorio6.ui.pages.cities_page.CitiesViewModel
 import com.group5.laboratorio6.ui.theme.Laboratorio6Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val citiesViewModel = ViewModelProvider(this)[CitiesViewModel::class.java]
+
         setContent {
             Laboratorio6Theme {
                 // A surface container using the 'background' color from the theme
@@ -22,25 +25,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    CitiesPage(citiesViewModel)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Laboratorio6Theme {
-        Greeting("Android")
-    }
-}
